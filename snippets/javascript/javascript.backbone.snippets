@@ -11,11 +11,13 @@ snippet model
 		}   
 	}); 
 
+	return $1;
+
 
 snippet view
 	var ${1} = Backbone.View.extend({
+		el: "",		// 挂载点
 		tagName: "${2}",
-		el: "",
 		template: _.template();
 
 		events: {
@@ -27,54 +29,67 @@ snippet view
 		},  
 
 		render: function () {
+			this.$el.html(this.template());
+			return this;	// for view.render().el
 		}   
 	}); 
 
+	return $1;
 
-# Collection
+
 snippet collection 
 	var ${1:Thing} = Backbone.Collection.extend({
 		model: ${2:model},
 		url: "${3}"
 	});
 
+	return $1;
 
-# Router
+
 snippet router 
 	var ${1:Thing} = Backbone.Router.extend({
 		routes: {
 		},
 	});
 
+	return $1;
+
 
 snippet define
 	define(function(require) {
+		var $ = require('jquery');
+		var _ = require('undercore');
 		var Backbone = require('backbone');
 	});
 
 
 snippet collectionView
-	var ${1: viewName} = Backbone.View.extend({
-		el: "${2: el}",
-		template: _.template(${3: template}),
+	var ${1:viewName} = Backbone.View.extend({
+		el: "${2:el}",		// 挂载点
+		template: _.template(${3:template}),
 
 		events: {
 
 		},
 
 		initialize: function () {
-			this.${4: collection} = new ();
+			this.${4:collection} = new Collection();
 			this.listenTo(this.{}, 'reset', this.render, this);
 			this.$4.fetch({reset: true});
 		},
 
 		render: function () {
 			this.$el.html(this.template());
-			var ul = this.$el.find('#jobs-list');
-			this.jobs.each(function(job) {
-				var jobView = new JobView(job);
-				console.log(jobView.render().el);
-				ul.append(jobView.el);
+			var list = this.$el.find('');
+			this.$4(function(item) {
+				var itemView = new itemView(item);
+				list.append(itemView.render().el);
 			}, this);
+			return this;
 		}
 	});
+
+	return $1;
+
+snippet require
+	var ${1:module} = require('${2:$1}');
