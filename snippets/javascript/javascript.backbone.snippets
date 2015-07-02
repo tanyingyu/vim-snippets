@@ -93,3 +93,41 @@ snippet collectionView
 
 snippet require
 	var ${1:module} = require('${2:$1}');
+	
+
+snippet config
+	require.config({
+		baseUrl: '/static/src/js/',
+
+		paths: {
+			jquery: '../../bower_components/jquery/dist/jquery.min',
+			underscore: '../../bower_components/underscore/underscore-min',
+			backbone: '../../bower_components/backbone/backbone-min',
+			text: '../../bower_components/text/text',
+			moment: '../../bower_components/moment/min/moment.min',
+
+			admin_app: './admin_app'
+		},
+
+		// http://requirejs.org/docs/api.html#config-shim
+		// 由于 underscore.js 和 backbone.js 并不支持 AMD, 并且未使用 define 方法,
+		// 所以需要使用 shim 配置.
+		// 历史上，backbone 是支持 requirejs 的，但是作者认为一个类库专门为特定的
+		// 加载器添加支持是错误的做法，所以去掉了对 requirejs 的支持。支持作者:)
+		shim: {
+			underscore: {
+				deps: [],
+				exports: "_"
+			},
+			backbone: {
+				deps: ['jquery', 'underscore'],
+				exports: "Backbone"
+			}
+		},
+	});
+
+
+	define(function (require) {
+		var Admin = require('admin_app');
+		Admin.initialize();
+	});
