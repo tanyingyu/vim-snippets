@@ -51,3 +51,30 @@ snippet define
 	define(function(require) {
 		var Backbone = require('backbone');
 	});
+
+
+snippet collectionView
+	var ${1: viewName} = Backbone.View.extend({
+		el: "${2: el}",
+		template: _.template(${3: template}),
+
+		events: {
+
+		},
+
+		initialize: function () {
+			this.${4: collection} = new ();
+			this.listenTo(this.{}, 'reset', this.render, this);
+			this.$4.fetch({reset: true});
+		},
+
+		render: function () {
+			this.$el.html(this.template());
+			var ul = this.$el.find('#jobs-list');
+			this.jobs.each(function(job) {
+				var jobView = new JobView(job);
+				console.log(jobView.render().el);
+				ul.append(jobView.el);
+			}, this);
+		}
+	});
