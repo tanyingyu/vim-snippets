@@ -47,9 +47,27 @@ snippet collection
 
 
 snippet router 
-	var ${1:Thing} = Backbone.Router.extend({
+	var ${1:Router} = Backbone.Router.extend({
 		routes: {
+			'new': 'newItem',
+			'edit/:itemID':	'editItem',
+
+			// Default
+			'*actions': 'index'
 		},
+
+		newItem: function() {
+			console.log('new');
+		},
+
+		editItem: function() {
+			console.log('edit');
+		},
+
+		index: function() {
+			var defaultView = new DefaultView();
+			defaultView.render();
+		}
 	});
 
 	return $1;
@@ -131,3 +149,8 @@ snippet config
 		var Admin = require('admin_app');
 		Admin.initialize();
 	});
+
+
+snippet routerStart
+	var router = new Router();
+	Backbone.history.start();
