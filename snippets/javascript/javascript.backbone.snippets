@@ -12,8 +12,6 @@ snippet model
 	}); 
 
 	return $1;
-
-
 snippet view
 	var ${1} = Backbone.View.extend({
 		el: "",		// 挂载点
@@ -35,8 +33,6 @@ snippet view
 	}); 
 
 	return $1;
-
-
 snippet collection 
 	var ${1:Thing} = Backbone.Collection.extend({
 		model: ${2:model},
@@ -44,8 +40,6 @@ snippet collection
 	});
 
 	return $1;
-
-
 snippet router 
 	var ${1:Router} = Backbone.Router.extend({
 		routes: {
@@ -71,16 +65,12 @@ snippet router
 	});
 
 	return $1;
-
-
 snippet define
 	define(function(require) {
 		var $ = require('jquery');
-		var _ = require('undercore');
+		var _ = require('underscore');
 		var Backbone = require('backbone');
 	});
-
-
 snippet collectionView
 	var ${1:viewName} = Backbone.View.extend({
 		el: "${2:el}",		// 挂载点
@@ -108,7 +98,6 @@ snippet collectionView
 	});
 
 	return $1;
-
 snippet require
 	var ${1:module} = require('${2:$1}');
 	
@@ -149,8 +138,12 @@ snippet config
 		var Admin = require('admin_app');
 		Admin.initialize();
 	});
-
-
 snippet routerStart
 	var router = new Router();
 	Backbone.history.start();
+snippet forTemplate
+	forTemplate: function() {
+		var tplJSON = this.toJSON();
+		tplJSON.${1:attr}= this.${2:get_$1}();
+		return tplJSON;
+	}
