@@ -20,6 +20,14 @@ snippet fori
 	for ${1:needle} in ${2:haystack} ; do
 		${0:#statements}
 	done
+snippet forFiles
+	${1:FILES}="file1
+	file2
+	file3"	
+	for f in $$1
+	do
+		echo "Processing $f"
+	done
 snippet wh
 	while [[ ${1:condition} ]]; do
 		${0:#statements}
