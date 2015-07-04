@@ -147,3 +147,6 @@ snippet forTemplate
 		tplJSON.${1:attr}= this.${2:get_$1}();
 		return tplJSON;
 	}
+snippet navigate
+	// Not use router.navigate, in case circular dependency.
+	Backbone.history.navigate('${0:/}', true);	
