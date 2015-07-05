@@ -146,8 +146,33 @@ snippet config
 
 
 	define(function (require) {
-		var Admin = require('admin_app');
-		Admin.initialize();
+	    var Backbone = require('backbone');
+
+		var ${1:Router} = Backbone.Router.extend({
+			routes: {
+				'new': 'newItem',
+				'edit/:itemID':	'editItem',
+
+				// Default
+				'*actions': 'index'
+			},
+
+			newItem: function() {
+				console.log('new');
+			},
+
+			editItem: function() {
+				console.log('edit');
+			},
+
+			index: function() {
+				var defaultView = new DefaultView();
+				defaultView.render();
+			}
+		});
+
+		var router = new $1();
+		Backbone.history.start();
 	});
 snippet routerStart
 	var router = new Router();
