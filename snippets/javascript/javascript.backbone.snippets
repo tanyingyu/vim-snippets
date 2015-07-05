@@ -83,7 +83,10 @@ snippet collectionView
 		initialize: function () {
 			this.${4:collection} = new Collection();
 			this.listenTo(this.{}, 'reset', this.render, this);
-			this.$4.fetch({reset: true});
+			this.$4.fetch({
+				reset: true,
+				success: this.onDataHandler,
+				error: this.onErrorHandler});
 		},
 
 		render: function () {
@@ -94,6 +97,14 @@ snippet collectionView
 				list.append(itemView.render().el);
 			}, this);
 			return this;
+		},
+
+		onDataHandler: function() {
+			console.log('拉取数据成功');
+		},
+
+		onErrorHandler: function() {
+			console.log('网络错误，拉取数据失败，请重试');
 		}
 	});
 
