@@ -16,7 +16,7 @@ snippet view
 	var ${1} = Backbone.View.extend({
 		el: "",		// 挂载点
 		tagName: "${2}",
-		template: _.template();
+		template: _.template(),
 
 		events: {
 			${3}
@@ -111,8 +111,6 @@ snippet collectionView
 	return $1;
 snippet require
 	var ${1:module} = require('${2:$1}');
-	
-
 snippet config
 	require.config({
 		baseUrl: '/static/src/js/',
@@ -186,3 +184,19 @@ snippet forTemplate
 snippet navigate
 	// Not use router.navigate, in case circular dependency.
 	Backbone.history.navigate('${0:/}', true);	
+snippet destroy
+	destroyView: function() {
+		this.remove();
+	}
+snippet tplNoWrap
+	var template = _.template(${1:tpl});
+	var html = template(${2:data});
+	this.setElement(html);
+snippet in
+	$.inArray(${1:item}, ${2:items});
+snippet join
+	${1:items}.join('${2:,}');
+snippet function
+	${1:funcName}: function() {
+		${2:// TODO}
+	}
