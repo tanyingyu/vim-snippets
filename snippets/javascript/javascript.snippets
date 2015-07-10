@@ -271,3 +271,14 @@ snippet daysAgo
 snippet startOfDay 
 	var now = new Date();
 	var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+snippet leftDays
+	var leftDays = function(targetDate) {
+		// var targetDate = "2015-07-11";
+		targetDate = targetDate.split("-");
+		var tmpDate = targetDate[1] + "/" + targetDate[2] + "/" + targetDate[0];
+		var targetTimestamp = new Date(tmpDate).getTime();
+		var now = new Date().getTime();
+		var timeDelta = targetTimestamp - now;
+		var days = timeDelta / (24*3600*1000);
+		return Math.ceil(days);
+	}
