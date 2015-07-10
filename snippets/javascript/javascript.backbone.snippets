@@ -200,3 +200,12 @@ snippet function
 	${1:funcName}: function() {
 		${2:// TODO}
 	}
+snippet filter
+	this.$1s.filter(function(${1:item}) {
+		return $1.get('attr') === 'value';
+	});
+snippet each
+	this.$1s.filter(function(${1:item}) {
+		// $1.get('attr') 
+	}, this);
+
