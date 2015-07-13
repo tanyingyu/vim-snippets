@@ -208,4 +208,12 @@ snippet each
 	this.$1s.each(function(${1:item}) {
 		// $1.get('attr') 
 	}, this);
-
+snippet toggleVisible
+	var ${1:item} = this.$('#${2:id}');
+	if ($1.css('visibility') == 'hidden') {
+		$1.css('visibility', 'visible');
+	} else {
+		$1.css('visibility', 'hidden');
+	}
+snippet target
+	$(event.target)
