@@ -225,3 +225,11 @@ snippet toggleClass
 	} else {
 		target.addClass($1);
 	}
+# http://stackoverflow.com/questions/25916009/backbone-zombie-views-good-practice
+snippet mainView
+	render: function(View, args) {
+		this.mainView && this.mainView.remove();    // if there is already a view, remove it
+		this.mainView = new View(args); 			// instantiate the new view
+		this.mainView.render();
+		this.mainView.$el.appendTo('#${1:container}');    // append it
+	},
