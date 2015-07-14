@@ -217,3 +217,11 @@ snippet toggleVisible
 	}
 snippet target
 	$(event.target)
+snippet toggleClass
+	var target;
+	var ${1:myClass} = '${2:class}';
+	if (target.hasClass($1)) {
+		target.removeClass($1);
+	} else {
+		target.addClass($1);
+	}
