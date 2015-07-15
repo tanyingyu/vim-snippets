@@ -233,3 +233,12 @@ snippet mainView
 		this.mainView.render();
 		this.mainView.$el.appendTo('#${1:container}');    // append it
 	},
+snippet containerView 
+	render: function(View, args) {
+		this.mainView && this.mainView.remove();    // if there is already a view, remove it
+		if (!$('.container').length) {
+			$('nav.topbar').after('<div class="container" style="left:0;"></div>');
+		}
+		this.mainView = new View(args); 			// instantiate the new view
+		this.mainView.render();
+	},
