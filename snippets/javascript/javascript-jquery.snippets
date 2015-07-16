@@ -587,3 +587,6 @@ snippet width
 	${1:obj}.width(${2:integer})
 snippet wrap
 	${1:obj}.wrap('${2:&lt;div class="extra-wrapper"&gt;&lt;/div&gt;}')
+# The currentTarget property always refers to the element whose event listener triggered the event, opposed to the target property, which returns the element that triggered the event.
+snippet target
+	$(event.currentTarget)	
