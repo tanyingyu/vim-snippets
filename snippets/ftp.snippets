@@ -1,0 +1,14 @@
+snippets lftp
+	HOST='${1:IP}:${2:PORT}'
+	USER='${3:USER}'
+	PASS='${4:PASSWORD}'
+	TARGETFOLDER='${5:TARGETFOLDER}'
+	SOURCEFOLDER='${6:SOURCEFOLDER}'
+
+	lftp -f "
+	open $HOST
+	user $USER $PASS
+	lcd $SOURCEFOLDER
+	mirror --reverse --exclude node_modules --exclude-glob *.swp --delete --verbose $SOURCEFOLDER $TARGETFOLDER
+	bye
+	"
