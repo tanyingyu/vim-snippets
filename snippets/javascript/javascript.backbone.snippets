@@ -242,3 +242,6 @@ snippet containerView
 		this.mainView = new View(args); 			// instantiate the new view
 		this.mainView.render();
 	},
+snippet hover
+	'mouseenter .tips-trigger': 'showTips',
+	'mouseleave .tips-trigger': 'hideTips',
