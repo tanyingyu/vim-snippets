@@ -296,4 +296,14 @@ snippet updateURLParam
 			return uri + separator + key + "=" + value;
 		}
 	}
-	
+# http://stackoverflow.com/questions/805107/creating-multiline-strings-in-javascript
+snippet multiLine
+	var ${1:multiLineStr} = 'Line1 \
+		Line2 \
+		Line3 \
+	';
+# http://stackoverflow.com/questions/6778990/get-url-with-content-after-hash
+# hash part: window.location.hash
+# all the url including the hash part: window.location.href
+snippet location
+	window.location.href
