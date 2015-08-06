@@ -590,3 +590,10 @@ snippet wrap
 # The currentTarget property always refers to the element whose event listener triggered the event, opposed to the target property, which returns the element that triggered the event.
 snippet target
 	$(event.currentTarget)	
+snippet include_jquery
+	var jq = document.createElement('script');
+	jq.src = "http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js";
+	document.getElementsByTagName('head')[0].appendChild(jq);
+	// ... give time for script to load, then type.
+	jQuery.noConflict();
+	var $ = jQuery;
