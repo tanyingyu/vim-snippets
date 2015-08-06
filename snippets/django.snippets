@@ -110,3 +110,6 @@ snippet r2r
 			${2}
 		}${0:, context_instance=RequestContext(request)}
 	)
+snippet get_post_data
+	request.POST.get('key', '')
+	
