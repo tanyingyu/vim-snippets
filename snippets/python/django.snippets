@@ -76,27 +76,29 @@ snippet form
 snippet model
 	class ${1:ModelName}(models.Model):
 		"""${2:docstring}"""
-		${3}
+		name = models.CharField(max_length=50, unique=True)
+		created_at = models.DateTimeField(auto_now_add=True)
+		modified_at = models.DateTimeField(auto_now=True)
+		tags = models.ManyToManyField(Tag, blank=True)
 
 		class Meta:
-			${4}
+			verbose_name = "$1"
+			verbose_name_plural = "$1s"
+			ordering = ["-created_at", ]
 
 		def __unicode__(self):
-			${5}
-
-		def save(self, *args, **kwargs):
-			${6}
-
-		@models.permalink
-		def get_absolute_url(self):
-			return ('${7:view_or_url_name}' ${0})
-
-snippet modeladmin
+			return self.name
+snippet admin
 	class ${1:ModelName}Admin(admin.ModelAdmin):
-		${0}
+		list_display = ("name", "created_at")
+		list_filter = ("tags", "created_at")
+		# Adding a ManyToManyField to this list will instead use a nifty
+		# unobtrusive JavaScript “filter” interface that allows searching within
+		# the options.
+		filter_horizontal = ("tags", )
 
-	admin.site.register($1, $1Admin)
 
+	admin.site.register(models.$1, $1Admin)
 snippet tabularinline
 	class ${0:ModelName}Inline(admin.TabularInline):
 		model = $1
@@ -110,3 +112,29 @@ snippet r2r
 			${2}
 		}${0:, context_instance=RequestContext(request)}
 	)
+snippet create_app 
+	python manage.py startapp <app_name> 
+snippet migrate
+	python manage.py makemigrations <app_name> 
+	python manage.py migrate
+# http://agiliq.com/books/djenofdjango/chapter4.html
+# Now, to fetch all comments related to a Post, we can use
+# post = Post.objects.get(pk=1)
+# comments = post.comment_set.all()
+snippet comment
+	class Comment(models.Model):
+		name = models.CharField(max_length=42)
+		email = models.EmailField(max_length=75)
+		website = models.URLField(max_length=200, null=True, blank=True)
+		text = models.TextField()
+		${1:post} = models.ForeignKey(${2:Post})
+		created_at = models.DateTimeField(auto_now_add=True)
+
+		def __unicode__(self):
+			return self.text
+snippet tag
+	class Tag(models.Model):
+		name = models.CharField(max_length=50, unique=True)
+
+		def __unicode__(self):
+			return self.name
