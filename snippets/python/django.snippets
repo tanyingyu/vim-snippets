@@ -115,8 +115,12 @@ snippet r2r
 snippet create_app 
 	python manage.py startapp <app_name> 
 snippet migrate
-	python manage.py makemigrations <app_name> 
-	python manage.py migrate
+	# which is responsible for creating new migrations based on the changes you have made to your models.
+	django-admin makemigrations <app_name> 
+	# which is responsible for applying migrations, as well as unapplying and listing their status, applying those to your database.
+	django-admin migrate <app_name> <migration_name>
+	# which displays the SQL statements for a migration.
+	django-admin sqlmigrate <app_name> <migration_name>
 # http://agiliq.com/books/djenofdjango/chapter4.html
 # Now, to fetch all comments related to a Post, we can use
 # post = Post.objects.get(pk=1)
