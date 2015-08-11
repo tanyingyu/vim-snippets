@@ -37,7 +37,7 @@ snippet filter
 snippet firstof
 	{% firstof ${1} %}
 snippet for
-	{% for ${1} in ${2} %}
+	{% for ${1:item} in $1s %}
 		${0}
 	{% endfor %}
 snippet empty

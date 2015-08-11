@@ -144,3 +144,7 @@ snippet tag
 			return self.name
 snippet get_post_data
 	request.POST.get('key', '')
+snippet query
+	${1:Model}.objects.filter(${2:field1}=${3:value1}).order_by('-${4:field2}')	
+snippet queryAll
+	${1:Model}.objects.all()
