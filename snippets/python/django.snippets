@@ -146,5 +146,13 @@ snippet get_post_data
 	request.POST.get('key', '')
 snippet query
 	${1:Model}.objects.filter(${2:field1}=${3:value1}).order_by('-${4:field2}')	
-snippet queryAll
+snippet all 
 	${1:Model}.objects.all()
+snippet choice
+	${1:CHOICES} = (
+		('S', 'Small'),
+		('M', 'Medium'),
+		('L', 'Large'),
+	)	
+	${2:shirt_size} = models.CharField(max_length=2, choices=$1)
+	# p.get_shirt_size_display()

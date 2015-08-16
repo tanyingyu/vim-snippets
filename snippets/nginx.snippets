@@ -1,0 +1,7 @@
+snippet redirect_www
+	server {
+		listen       80;
+		server_name  sunzhongwei.com;
+		return       301 http://www.sunzhongwei.com$request_uri;
+	}
+	
