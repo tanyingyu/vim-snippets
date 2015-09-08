@@ -156,3 +156,12 @@ snippet choice
 	)	
 	${2:shirt_size} = models.CharField(max_length=2, choices=$1)
 	# p.get_shirt_size_display()
+snippet view 
+	def ${1:index}(request):
+		${2:item}s = models.${3:Item}.objects.all()
+		context = dict(
+			$2s=$2s
+		)
+	return render(request, "$2/$1.html", context)
+snippet get
+	${1:item} = get_object_or_404(models.${2:Item}, pk=$1_id)
