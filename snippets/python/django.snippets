@@ -148,6 +148,8 @@ snippet query
 	${1:Model}.objects.filter(${2:field1}=${3:value1}).order_by('-${4:field2}')	
 snippet all 
 	${1:Model}.objects.all()
+snippet limit
+	${1:Model}.objects.all().order_by('-id')[:20]
 snippet choice
 	${1:CHOICES} = (
 		('S', 'Small'),
