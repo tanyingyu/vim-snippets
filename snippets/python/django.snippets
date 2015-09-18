@@ -80,6 +80,7 @@ snippet model
 		created_at = models.DateTimeField(auto_now_add=True)
 		modified_at = models.DateTimeField(auto_now=True)
 		tags = models.ManyToManyField(Tag, blank=True)
+		author = models.ForeignKey(Author)
 
 		class Meta:
 			verbose_name = "$1"
@@ -138,6 +139,12 @@ snippet comment
 			return self.text
 snippet tag
 	class Tag(models.Model):
+		name = models.CharField(max_length=50, unique=True)
+
+		def __unicode__(self):
+			return self.name
+snippet author 
+	class Author(models.Model):
 		name = models.CharField(max_length=50, unique=True)
 
 		def __unicode__(self):
