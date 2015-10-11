@@ -1,0 +1,19 @@
+snippet href
+	a::attr(href)
+snippet text
+	a::text
+snippet css
+	response.css('${0:title}').extract()
+snippet parse_items
+	for href in response.css("a::attr('href')"):
+		url = response.urljoin(href.extract())
+		yield scrapy.Request(url, callback=self.${0:parse_item})
+snippet parse_items_and_next
+	for href in response.css("a::attr('href')"):
+		url = response.urljoin(href.extract())
+		yield scrapy.Request(url, callback=self.${0:parse_item})
+
+	next_page = response.css("li.next-page > a::attr('href')")
+    if next_page:
+        url = response.urljoin(next_page[0].extract())
+        yield scrapy.Request(url, self.parse_items)
