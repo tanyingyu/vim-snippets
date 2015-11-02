@@ -225,3 +225,8 @@ snippet akw
 snippet read_file
 	with open(${1:file}, 'r') as f:
 		content = f.read()
+snippet url_param 
+	import urlparse
+	url = 'http://foo.appspot.com/abc?def=ghi'
+	parsed = urlparse.urlparse(url)
+	print urlparse.parse_qs(parsed.query)['def']
