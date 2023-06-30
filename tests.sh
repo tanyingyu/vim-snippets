@@ -7,7 +7,7 @@ if [[ $? -ne 1 ]]; then
   echo;
   echo "$SPACED";
   echo;
-  echo Tests failed!
+  echo 测试失败!
   exit 1;
 fi
 
